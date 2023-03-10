@@ -96,4 +96,4 @@ Broken: 1
 
 #### Diagrama de Flujo de la función MDLINK
 
-![AltText] (https://www.figma.com/file/BOWBVamH6kmWYAnIjRRlKr/Untitled?node-id=0%3A1&t=EvV6WNjV7PTUHpDw-1)
+![Alttext](./DIAGRAMA.png)
