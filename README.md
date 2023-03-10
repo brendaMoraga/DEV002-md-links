@@ -17,18 +17,11 @@ herramienta usando [Node.js](https://nodejs.org/), que lea y analice archivos
 en formato `Markdown`, para verificar los links que contengan y reportar
 algunas estadísticas.
 
-![md-links](https://user-images.githubusercontent.com/110297/42118443-b7a5f1f0-7bc8-11e8-96ad-9cc5593715a6.jpg)
+![md-links](https://www.ionos.es/digitalguide/fileadmin/_processed_/b/6/csm_md-file-t_6355406f58.jpg)
 
-##  Resumen del proyecto
-MDlINKS es una interfaz (CLI) que lee y analiza archivos en formato Markdown, verifica el estado de los links a traves de los siguentes comandos en tu terminal:
+### Resumen del proyecto
+Md-links es una interfaz (CLI) que lee y analiza archivos en formato Markdown, verifica el estado de los links y crea estadisticas basicas de la información que encuantra en tu directorio. 
 
-## mdlink --validate 
-
-el módulo realiza una petición HTTP para averiguar si el link funciona o no. Si el link resulta en una redirección a una URL que responde ok, entonces consideraremos el link como ok.
-
-## mdlink --stats
-
-el output (salida)  estadísticas básicas sobre los links.
 
 ### Cómo funciona MDLINK
 
@@ -44,7 +37,6 @@ Si se proporcionan ambas opciones "--validate" y "--stats", la función "mdLinks
 
 Finalmente, si se proporcionan opciones adicionales que no se reconocen, se imprimirá un mensaje de error.
 
- 
 
 ##### Valores de retorno
 
@@ -104,4 +96,4 @@ Broken: 1
 
 #### Diagrama de Flujo de la función MDLINK
 
-![Alt text] (./DIAGRAMA.png)
+![AltText] (https://www.figma.com/file/BOWBVamH6kmWYAnIjRRlKr/Untitled?node-id=0%3A1&t=EvV6WNjV7PTUHpDw-1)

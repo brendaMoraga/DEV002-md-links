@@ -19,14 +19,12 @@ const mdLinks = (ruta, options = { validate: false, stats: false }) => {
       console.log(`La ruta ${ruta} existe`);
       const rutaAbsoluta = convertirRuta(ruta)
       // console.log(rutaAbsoluta)
-      // si es directorio leer y manda a arr     
+      // Si hay ruta absoluta en el directorio se almacena llama a f recursiva
       if (esDirectorio(rutaAbsoluta)) {
-        // console.log(arrArchivosMD)
         const buscaArchivo = arrayTodosLosArchivos(rutaAbsoluta)
-        // console.log('recursive', buscaArchivo)
         buscaArchivo.forEach(archivo => {
+          // Si es .md se almacena, si no avisa
           if (extension(archivo) === '.md') {
-            // console.log(arrArchivosMD)
             arrArchivosMD.push(archivo)
           } else {
             if (arrArchivosMD === []) {
