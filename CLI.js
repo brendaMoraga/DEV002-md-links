@@ -3,7 +3,7 @@ const process = require('process');
 const { mdLinks } = require ('./index.js');
 
 
-const ruta = process.argv[2] // la ruta al archivo JavaScript que se está ejecutando actualmente.
+const ruta = process.argv[2] 
 console.log(ruta)
 const opcion1 = process.argv[3]
 const opcion2 = process.argv[4]
@@ -28,3 +28,7 @@ if (ruta) {
         console.log('revisa los parametros')
     }
 }
+
+
+// [1]ruta al ejecutable de Node.js.
+// [2]ruta al archivo JavaScript que se está ejecutando actualmente.

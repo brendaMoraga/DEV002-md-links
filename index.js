@@ -26,13 +26,10 @@ const mdLinks = (ruta, options = { validate: false, stats: false }) => {
           // Si es .md se almacena, si no avisa
           if (extension(archivo) === '.md') {
             arrArchivosMD.push(archivo)
-          } else {
-            if (arrArchivosMD === []) {
-              console.log('no hay archivos .md')
-            }
+          } else {             
+              console.log('no hay archivos .md')           
           }
         })
-
         // NO ES DIR / SI ES MD PUSHEO AL ARR 
       } else {
         if (extension(rutaAbsoluta) === '.md') {

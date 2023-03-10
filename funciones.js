@@ -1,11 +1,9 @@
-
 const fs = require('fs')
 const path = require('path');
 const axios = require('axios');
 // const fetch = require('node-fetch');
 
 //  EXISTE RUTA?
-
 const existeRuta = (ruta) => fs.existsSync(ruta);
 
 // CONVERTIR A RUTA ABSOLUTA
@@ -22,7 +20,7 @@ const esDirectorio = (ruta) => fs.statSync(ruta).isDirectory();
 //ES EXTENCIÓN .MD
 const extension = (ruta) => path.extname(ruta);
 
-// RECORRER ARREGLO DE ARCHIVOS
+// Lee el contenido del arrayMD, busca enlaces con arrayLink y concatena en un nuevo arr. 
 const buscarEnArray = (arrArchivosMD) => {
   const nuevoArray = [];
   return new Promise((resolve, reject) => {
