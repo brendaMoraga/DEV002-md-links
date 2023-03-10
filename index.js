@@ -1,55 +1,111 @@
+const {
+  existeRuta,
+  convertirRuta,
+  extension,
+  esDirectorio,
+  buscarEnArray,
+  statsAndValidate,
+  respuestasLinks,
+  arrayTodosLosArchivos,
+  statsResult,
+} = require('./funciones.js');
 
-const { existeRuta, esRutaAbsoluta, rutaEsArchivo } = require('./funciones.js');
 
-// EXISTE RUTA ?
-const mdLinks = (path, options) => {
+const mdLinks = (ruta, options = { validate: false, stats: false }) => {
   return new Promise((resolve, reject) => {
-    const ruta = '/Users/Brenda/Desktop/<L>/MDLINKS/DEV005-md-links/archivosDePrueba/prueba.md';
+    const arrArchivosMD = [];
+
     if (existeRuta(ruta)) {
-
       console.log(`La ruta ${ruta} existe`);
+      const rutaAbsoluta = convertirRuta(ruta)
+      // console.log(rutaAbsoluta)
+      // si es directorio leer y manda a arr     
+      if (esDirectorio(rutaAbsoluta)) {
+        // console.log(arrArchivosMD)
+        const buscaArchivo = arrayTodosLosArchivos(rutaAbsoluta)
+        // console.log('recursive', buscaArchivo)
+        buscaArchivo.forEach(archivo => {
+          if (extension(archivo) === '.md') {
+            // console.log(arrArchivosMD)
+            arrArchivosMD.push(archivo)
+          } else {
+            if (arrArchivosMD === []) {
+              console.log('no hay archivos .md')
+            }
+          }
+        })
 
-      if (esRutaAbsoluta(ruta)) {
-          console.log("la ruta si es absoluta")
-        if (archivoExiste){
-          console.log("el archivo si existe")
-        }else{
-          console.log("el archivo no existe")
-        }
+        // NO ES DIR / SI ES MD PUSHEO AL ARR 
       } else {
-        console.log("la ruta no es absoluta")
+        if (extension(rutaAbsoluta) === '.md') {
+          arrArchivosMD.push(ruta)
+        } else {
+          console.log('no es un archivo.md')
+        }
       }
-
+      // OPCIONES DEL USUARIO CLI
+      // --VALIDATE --STATS 
+      if (options.validate === true && options.stats === true) {
+        console.log('ingresaste opciones --validate y --stats')
+        buscarEnArray(arrArchivosMD)
+          .then((result) => {
+            // console.log(result)
+            respuestasLinks(result)
+              .then((result) => {
+                console.log(result)
+                const statsValidate = statsAndValidate(result)
+                console.log("ambas opciones", statsValidate)
+                resolve(statsValidate)
+              })
+          });
+      // --STATS
+      } else if (options.validate === false && options.stats === true) {
+        console.log("elegiste opción stats")
+        buscarEnArray(arrArchivosMD)
+          .then((result) => {
+            // console.log(result)
+            const stats = statsResult(result)
+            console.log("opcion stats", stats)
+            resolve(stats)
+          });
+      // --VALIDATE
+      } else if (options.validate === true && options.stats === false) {
+        console.log('elegiste la opción validate')
+        buscarEnArray(arrArchivosMD)
+          .then((result) => {
+            // console.log(result)
+            respuestasLinks(result)
+              .then((result) => {
+                const validate = result
+                resolve(validate)
+                console.log('opción validate', validate)
+              })
+          });
+      } else {
+        console.log('No elegiste una opción')
+        buscarEnArray(arrArchivosMD)
+          .then((result) => {
+            // console.log(result)
+            const anyOption = result;
+            resolve(anyOption)
+            console.log('no ingresaste opción', anyOption)
+          });
+      }
+    } else {
+      console.log(`La ruta ${ruta} no existe`);
     }
-    else {
-      //reject(`La ruta ${ruta} no existe`);
-      console.log("la ruta no existe")
-    }
-  }
+  });
 
-  )
 };
 
-mdLinks('/Users/Brenda/Desktop/<L>/MDLINKS/DEV002-md-links/archivosDePrueba');
-//  console.log(mdLinks('/Users/Brenda/Desktop'));
+module.exports = {
+  mdLinks
+};
 
 
-//ABSOLUTA?
-const ruta = '/Users/Brenda/Desktop/<L>/MDLINKS/DEV002-md-links/archivosDePrueba/prueba.md';
-if (esRutaAbsoluta(ruta)) {
-  return true
-} else {
-  return false
-}
 
 
-// const ruta2 = './Brenda/Desktop/<L>/MDLINKS/DEV002-md-links/archivosDePrueba/prueba.md';
 
-// console.log(esRutaAbsoluta(ruta1)); // true
-// console.log(esRutaAbsoluta(ruta2)); // false
 
-// const os = require ('os');
-// console.log(os.homedir());
-// module.exports = {     
-//   mdLinks
-// };
+
+
